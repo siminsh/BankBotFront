@@ -1,0 +1,28 @@
+<div class="chat-container">
+  <div class="chat-header">
+    <h2>Chat with BankBot</h2>
+  </div>
+  
+  <div class="chat-messages" #chatMessages>
+    <div *ngIf="isLoading" class="loading-indicator">
+      <div class="spinner"></div>
+      <p>Loading chat history...</p>
+    </div>
+    
+    <div *ngIf="!isLoading && messages.length === 0" class="empty-state">
+      <p>No messages yet. Ask BankBot a question about your finances!</p>
+      <p>Example questions:</p>
+      <ul>
+        <li>"How much did I spend last month?"</li>
+        <li>"Which category did I spend the most on?"</li>
+        <li>"Is my income decreasing?"</li>
+      </ul>
+    </div>
+    
+    <app-chat-history [messages]="messages"></app-chat-history>
+  </div>
+  
+  <div class="chat-input">
+    <app-message-input (messageSent)="onMessageSent($event)"></app-message-input>
+  </div>
+</div>

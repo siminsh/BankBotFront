@@ -1,0 +1,11 @@
+<div class="message-list">
+  <div *ngFor="let message of messages" 
+       [ngClass]="message.messageType === 'USER' ? 'message user-message' : 'message bot-message'">
+    <div class="message-content">
+      <p [innerHTML]="message.content"></p>
+    </div>
+    <div class="message-timestamp">
+      {{ formatTimestamp(message.timestamp) }}
+    </div>
+  </div>
+</div>

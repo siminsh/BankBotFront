@@ -1,0 +1,105 @@
+<div class="registration-container">
+  <div class="registration-card">
+    <h2><i class="bi bi-person-plus me-2"></i>User Registration</h2>
+    
+    <div *ngIf="registrationSuccess" class="alert alert-success">
+      <i class="bi bi-check-circle-fill me-2"></i> Registration successful!
+    </div>
+    
+    <div *ngIf="registrationError" class="alert alert-danger">
+      <i class="bi bi-exclamation-triangle-fill me-2"></i> Registration failed. Username may already exist.
+    </div>
+    
+    <form [formGroup]="registrationForm" (ngSubmit)="onSubmit()">
+      <div class="form-group">
+        <label for="name"><i class="bi bi-person me-1"></i> First Name</label>
+        <input 
+          type="text" 
+          id="name" 
+          formControlName="name" 
+          class="form-control" 
+          [ngClass]="{'is-invalid': registrationForm.get('name')?.invalid && registrationForm.get('name')?.touched}">
+        <div *ngIf="registrationForm.get('name')?.invalid && registrationForm.get('name')?.touched" class="invalid-feedback">
+          First name is required
+        </div>
+      </div>
+      
+      <div class="form-group">
+        <label for="family"><i class="bi bi-people me-1"></i> Last Name</label>
+        <input 
+          type="text" 
+          id="family" 
+          formControlName="family" 
+          class="form-control"
+          [ngClass]="{'is-invalid': registrationForm.get('family')?.invalid && registrationForm.get('family')?.touched}">
+        <div *ngIf="registrationForm.get('family')?.invalid && registrationForm.get('family')?.touched" class="invalid-feedback">
+          Last name is required
+        </div>
+      </div>
+      
+      <div class="form-group">
+        <label for="username"><i class="bi bi-at me-1"></i> Username</label>
+        <input 
+          type="text" 
+          id="username" 
+          formControlName="username" 
+          class="form-control"
+          [ngClass]="{'is-invalid': registrationForm.get('username')?.invalid && registrationForm.get('username')?.touched}">
+        <div *ngIf="registrationForm.get('username')?.invalid && registrationForm.get('username')?.touched" class="invalid-feedback">
+          <span *ngIf="registrationForm.get('username')?.errors?.['required']">Username is required</span>
+          <span *ngIf="registrationForm.get('username')?.errors?.['minlength']">Username must be at least 4 characters</span>
+        </div>
+      </div>
+      
+      <div class="form-group">
+        <label for="password"><i class="bi bi-shield-lock me-1"></i> Password</label>
+        <input 
+          type="password" 
+          id="password" 
+          formControlName="password" 
+          class="form-control"
+          [ngClass]="{'is-invalid': registrationForm.get('password')?.invalid && registrationForm.get('password')?.touched}">
+        <div *ngIf="registrationForm.get('password')?.invalid && registrationForm.get('password')?.touched" class="invalid-feedback">
+          <span *ngIf="registrationForm.get('password')?.errors?.['required']">Password is required</span>
+          <span *ngIf="registrationForm.get('password')?.errors?.['minlength']">Password must be at least 6 characters</span>
+        </div>
+      </div>
+      
+      <div class="form-group">
+        <label for="country"><i class="bi bi-globe me-1"></i> Country</label>
+        <select 
+          id="country" 
+          formControlName="country" 
+          class="form-control"
+          [ngClass]="{'is-invalid': registrationForm.get('country')?.invalid && registrationForm.get('country')?.touched}">
+          <option value="">Select a country</option>
+          <option *ngFor="let country of countries" [value]="country.name">{{country.name}}</option>
+        </select>
+        <div *ngIf="registrationForm.get('country')?.invalid && registrationForm.get('country')?.touched" class="invalid-feedback">
+          Country is required
+        </div>
+      </div>
+      
+      <div class="form-group">
+        <label for="city"><i class="bi bi-buildings me-1"></i> City</label>
+        <select 
+          id="city" 
+          formControlName="city" 
+          class="form-control"
+          [ngClass]="{'is-invalid': registrationForm.get('city')?.invalid && registrationForm.get('city')?.touched}">
+          <option value="">Select a city</option>
+          <option *ngFor="let city of cities" [value]="city">{{city}}</option>
+        </select>
+        <div *ngIf="registrationForm.get('city')?.invalid && registrationForm.get('city')?.touched" class="invalid-feedback">
+          City is required
+        </div>
+      </div>
+      
+      <div class="form-group">
+        <button type="submit" class="btn btn-primary btn-block">
+          <i class="bi bi-check2-circle me-2"></i> Register
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

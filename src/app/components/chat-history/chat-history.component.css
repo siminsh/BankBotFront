@@ -1,0 +1,37 @@
+.message-list {
+  display: flex;
+  flex-direction: column;
+  padding: 15px;
+  overflow-y: auto;
+  height: calc(100vh - 150px);
+}
+
+.message {
+  margin-bottom: 15px;
+  padding: 10px 15px;
+  border-radius: 8px;
+  max-width: 80%;
+  word-wrap: break-word;
+}
+
+.user-message {
+  align-self: flex-end;
+  background-color: #007bff;
+  color: white;
+}
+
+.bot-message {
+  align-self: flex-start;
+  background-color: #f1f1f1;
+  color: #333;
+}
+
+.message-content {
+  margin-bottom: 5px;
+}
+
+.message-timestamp {
+  font-size: 0.7em;
+  opacity: 0.7;
+  text-align: right;
+}

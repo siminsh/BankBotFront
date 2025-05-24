@@ -1,0 +1,19 @@
+<div class="message-input-container">
+  <form [formGroup]="messageForm" (ngSubmit)="onSubmit()">
+    <div class="input-group">
+      <input 
+        type="text" 
+        class="form-control"
+        placeholder="Ask about your finances..."
+        formControlName="message">
+      <div class="input-group-append">
+        <button 
+          class="btn btn-primary" 
+          type="submit"
+          [disabled]="!messageForm.valid">
+          Send
+        </button>
+      </div>
+    </div>
+  </form>
+</div>
